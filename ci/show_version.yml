@@ -9,5 +9,5 @@ inputs:
 - name: flight-school
 
 run:
-  path: ls
-  args: [flight-school]
+  path: git
+  args: ["rev-parse", "HEAD"]

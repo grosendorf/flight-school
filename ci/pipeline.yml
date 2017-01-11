@@ -12,9 +12,17 @@ jobs:
     trigger: true
   - task: show-version
     file: flight-school/ci/show_version.yml
+
 - name: test-app
   plan:
   - get: flight-school
     trigger: true
   - task: tests
+    file: flight-school/ci/test.yml
+
+- name: build
+  plan:
+  - get: flight-school
+    passed: [test-app]
+  - task: build
     file: flight-school/ci/build.yml

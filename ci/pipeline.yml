@@ -8,9 +8,18 @@ resources:
   type: s3
   source:
     bucket: test-files-grid
+    region_name: us-west-2
     regexp: flight-school/flight-school-(.*).tgz
     access_key_id: {{access}}
     secret_access_key: {{secret}}
+- name: version
+  type: semver
+  source:
+    bucket: test-files-grid
+    key: flight-school/current-version
+    access_key_id: {{access}}
+    secret_access_key: {{secret}}
+    initial_version: 1.0.0
 
 jobs:
 - name: test-app
@@ -22,12 +31,11 @@ jobs:
 
 - name: build
   plan:
+  - get: version
+    params:
+      bump: patch
   - get: flight-school
     trigger: true
     passed: [test-app]
   - task: build
     file: flight-school/ci/build.yml
-  - put: release-bucket
-    params:
-      file: build/flight-school.tgz
-      acl: private

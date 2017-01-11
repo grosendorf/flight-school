@@ -42,5 +42,6 @@ jobs:
     file: flight-school/ci/build.yml
   - put: release-bucket
     params:
-      file: build/flight-school-(.*).tgz
+      file: build/flight-school-*.tgz
       acl: private
+  - put: version

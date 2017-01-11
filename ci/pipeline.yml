@@ -45,3 +45,4 @@ jobs:
       file: build/flight-school-*.tgz
       acl: private
   - put: version
+    params: {file: version/version}

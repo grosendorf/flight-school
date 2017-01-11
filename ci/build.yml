@@ -13,5 +13,4 @@ outputs:
 - name: build
 
 run:
-  path: tar
-  args: ["cvzf", "build/flight-school-$(cat version/version).tgz", "flight-school/"]
+  path: flight-school/ci/build.sh

@@ -23,13 +23,13 @@ resources:
     initial_version: 1.0.0
 
 jobs:
-- name: test-2.3
+- name: test-23
   plan:
   - get: flight-school
     trigger: true
   - task: tests
     file: flight-school/ci/test23.yml
-- name: test-2.2
+- name: test-22
   plan:
   - get: flight-school
     trigger: true
@@ -43,7 +43,7 @@ jobs:
       bump: patch
   - get: flight-school
     trigger: true
-    passed: [test-2.3, test-2.2]
+    passed: [test-23, test-22]
   - task: build
     file: flight-school/ci/build.yml
   - put: release-bucket

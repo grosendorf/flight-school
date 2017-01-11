@@ -4,18 +4,19 @@ resources:
   source:
     uri: https://github.com/grosendorf/flight-school
     branch: master
-- name: release-bucket
-  type: s3
-  source:
-    bucket: test-files-grid
-    region_name: us-west-2
-    regexp: flight-school/flight-school-(.*).tgz
-    access_key_id: {{access}}
-    secret_access_key: {{secret}}
+# - name: release-bucket
+#   type: s3
+#   source:
+#     bucket: test-files-grid
+#     region_name: us-west-2
+#     regexp: flight-school/flight-school-(.*).tgz
+#     access_key_id: {{access}}
+#     secret_access_key: {{secret}}
 - name: version
   type: semver
   source:
     bucket: test-files-grid
+    region_name: us-west-2
     key: flight-school/current-version
     access_key_id: {{access}}
     secret_access_key: {{secret}}

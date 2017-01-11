@@ -8,7 +8,9 @@ image_resource:
 
 inputs:
 - name: flight-school
+outputs:
+- name: build
 
 run:
   path: tar
-  args: ["cvzf", "flight-school.tgz", "flight-school/"]
+  args: ["cvzf", "build/flight-school.tgz", "flight-school/"]

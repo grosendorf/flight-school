@@ -4,6 +4,13 @@ resources:
   source:
     uri: https://github.com/grosendorf/flight-school
     branch: master
+- name: release-bucket
+  type: s3
+  source:
+    bucket: test-files-grid
+    regexp: flight-school/flight-school-(.*).tgz
+    access_key_id: {{access}}
+    secret_access_key: {{secret}}
 
 jobs:
 - name: test-app
@@ -20,3 +27,7 @@ jobs:
     passed: [test-app]
   - task: build
     file: flight-school/ci/build.yml
+  - put: release-bucket
+    params:
+      file: build/flight-school.tgz
+      acl: private

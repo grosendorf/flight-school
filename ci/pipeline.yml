@@ -7,17 +7,17 @@ resources:
 - name: release-bucket
   type: s3
   source:
-    bucket: test-files-grid
-    region_name: us-west-2
-    regexp: flight-school/flight-school-(.*).tgz
+    bucket: devco-concourse-demo
+    region_name: us-east-1
+    regexp: flight-school-(.*).tgz
     access_key_id: {{access}}
     secret_access_key: {{secret}}
 - name: version
   type: semver
   source:
-    bucket: test-files-grid
-    region_name: us-west-2
-    key: flight-school/VERSION
+    bucket: devco-concourse-demo
+    region_name: us-east-1
+    key: VERSION
     access_key_id: {{access}}
     secret_access_key: {{secret}}
     initial_version: 1.0.0
